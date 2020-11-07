@@ -31,15 +31,15 @@ export class LoginComponent implements OnInit {
     this.loginForm.reset();
     console.warn("Login information", loginData);
 
-    const { email, contraseña } = loginData;
+    const { email, password } = loginData;
 
-    if (email == "" || contraseña == "") {
+    if (email == "" || password == "") {
       this.errMsg = "Por favor valide los datos ingresados"
 
     } else {
 
       // Call to service and if is okey redirect
-      this.userService.login(email, contraseña).subscribe(user => {
+      this.userService.login(email, password).subscribe(user => {
         this.userService.setUser(user);
         console.log(user);
         this.router.navigate(['/home']);
@@ -47,6 +47,9 @@ export class LoginComponent implements OnInit {
         err => {
           if (err.status === 409) {
             this.errMsg = 'No existe usuario con las credenciales ingresadas';
+          } else {
+            console.log(err);
+            this.errMsg = 'Valide los datos ingresados';
           }
         });
     }
