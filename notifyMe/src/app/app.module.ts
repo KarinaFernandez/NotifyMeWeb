@@ -13,6 +13,7 @@ import { IncidentsTableComponent as IncidentsTableComponent } from './components
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MatSortModule } from '@angular/material/sort';
     TopBarComponent,
     LoginComponent,
     RegisterComponent,
-    IncidentsTableComponent
+    IncidentsTableComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { MatSortModule } from '@angular/material/sort';
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'home', component: HomeComponent }
     ]),
     BrowserAnimationsModule,
     MatTableModule,
