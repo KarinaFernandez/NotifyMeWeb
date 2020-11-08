@@ -9,13 +9,18 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IncidentsTableComponent as IncidentsTableComponent } from './components/incidents-table/incidents-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopBarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    IncidentsTableComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       { path: '', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
     ]),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
