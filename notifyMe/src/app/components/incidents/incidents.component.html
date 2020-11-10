@@ -1,0 +1,31 @@
+<body>
+  <div class="text-center">
+    <h5>Incidentes reportados</h5>
+    <p *ngIf="incidents?.length <= 0">No se registraron incidentes aún</p>
+    <p *ngIf="errMsg">{{errMsg}}</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th *ngFor="let titulo of titulos" scope="col">{{ titulo }} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let incident of incidents; let i = index">
+          <td>{{incident.titulo}}</td>
+          <td>${{incident.tipo}}</td>
+          <!-- <td><button class="btn btn-light button-small" (click)="disableIncident(i)">Deshabilitar</button></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <body class="container m-t-1">
+    <app-expenses-per-type></app-expenses-per-type>
+  </body>
+  <body class="container m-t-1">
+    <app-purchase-by-type></app-purchase-by-type>
+  </body>
+  <body class="container m-t-1">
+    <app-total-amount-wasted></app-total-amount-wasted>
+  </body> -->
+</body>

@@ -6,7 +6,7 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class IncidentService {
-  expenses = [];
+  incidents = [];
   types = [];
 
   constructor(
@@ -14,23 +14,16 @@ export class IncidentService {
     private userService: UserService
   ) { }
 
-  setExpenses(expenses) {
-    this.expenses = expenses;
-  }
-
-  setExpenseTypes(types) {
-    this.types = types
+  setIncidents(incidents) {
+    this.incidents = incidents;
   }
 
   getIncidents() {
-    const headers = { 'Content-Type': 'application/json', 'apiKey': this.userService.getUser().apiKey };
-    const params = new HttpParams().append('id', this.userService.getUser().id);
-    return this.http.get("https://notify-me-server.herokuapp.com/incidentes", { headers, params });
-  }
-
-  getExpenseTypes() {
-    const headers = { 'Content-Type': 'application/json', 'apiKey': this.userService.getUser().apiKey };
-    return this.http.get("http://xpense.develotion.com/rubros.php", { headers });
+    const headers = { 'Content-Type': 'application/json' };
+    console.log(headers);
+    // const params = new HttpParams().append('id', this.userService.getUser().id);
+    // console.log(params);
+    return this.http.get("https://notify-me-server.herokuapp.com/incidentes", { headers });
   }
 
   addExpense(nombre, monto, idUsuario, idRubro) {

@@ -9,11 +9,12 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IncidentsTableComponent as IncidentsTableComponent } from './components/incidents-table/incidents-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HomeComponent } from './components/home/home.component';
+import { IncidentsComponent } from './components/incidents/incidents.component';
+import { IncidentService } from './services/incidents.service';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,8 @@ import { HomeComponent } from './components/home/home.component';
     TopBarComponent,
     LoginComponent,
     RegisterComponent,
-    IncidentsTableComponent,
-    HomeComponent
+    HomeComponent,
+    IncidentsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,8 @@ import { HomeComponent } from './components/home/home.component';
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'home', component: HomeComponent }
+      { path: 'home', component: HomeComponent },
+      { path: 'incidents', component: IncidentsComponent }
     ]),
     BrowserAnimationsModule,
     MatTableModule,
