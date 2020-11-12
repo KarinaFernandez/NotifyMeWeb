@@ -26,16 +26,10 @@ export class IncidentService {
     return this.http.get("https://notify-me-server.herokuapp.com/incidentes", { headers });
   }
 
-  addExpense(nombre, monto, idUsuario, idRubro) {
-    const headers = { 'Content-Type': 'application/json', 'apiKey': this.userService.getUser().apiKey  };
-    const body = JSON.stringify({ nombre, monto, idUsuario, idRubro});
-    return this.http.post("http://xpense.develotion.com/gastos.php", body,{ headers });
+  disableIncident(idIncident, habilitado) {
+    const headers = { 'Content-Type': 'application/json' }; //, 'apiKey': this.userService.getUser().apiKey  };
+    const body = JSON.stringify({ habilitado});
+    const route = "https://notify-me-server.herokuapp.com/incidentes/" + idIncident;
+    return this.http.put(route, body, { headers });
   }
-
-  removeExpense(idGasto) {
-    const headers = { 'Content-Type': 'application/json', 'apiKey': this.userService.getUser().apiKey  };
-    const body = JSON.stringify({ idGasto});
-    return this.http.request('delete', "http://xpense.develotion.com/gastos.php", { body, headers });
-  }
-
 }

@@ -32,8 +32,7 @@ import { IncidentService } from './services/incidents.service';
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'home', component: HomeComponent },
-      { path: 'incidents', component: IncidentsComponent }
+      { path: 'home', component: HomeComponent }
     ]),
     BrowserAnimationsModule,
     MatTableModule,

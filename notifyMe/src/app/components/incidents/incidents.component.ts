@@ -22,7 +22,6 @@ export class IncidentsComponent implements OnInit {
   }
 
   getIncidents() {
-    console.log("acaaaa");
     this.incidentService.getIncidents().subscribe((a: any) => {
       console.log(a);
       this.incidentService.setIncidents(a);
@@ -35,7 +34,16 @@ export class IncidentsComponent implements OnInit {
   }
 
   disableIncident(index) {
-    let idIncident = this.incidents[index].id;
-    console.log(idIncident);
+    console.log(index);
+    let incident = this.incidents[index];
+    console.log(incident);
+
+    this.incidentService.disableIncident(incident._id, !incident.habilitado).subscribe((a: any) => {
+      if (a.codigo == 409 || a.codigo == 404 || a.codigo == 400 ) {
+        this.errMsg = a.mensaje;
+      } else {
+        this.getIncidents();
+      }
+    })
   }
 }

@@ -12,9 +12,13 @@
       </thead>
       <tbody>
         <tr mdbTableCol *ngFor="let incident of incidents; let i = index">
+          <td>{{incident.fecha}}</td>
           <td>{{incident.titulo}}</td>
           <td>${{incident.tipo}}</td>
-          <!-- <td><button class="btn btn-light button-small" (click)="disableIncident(i)">Deshabilitar</button></td> -->
+          <td>{{incident.imagen}}</td>
+          <td>{{incident.latitud}} {{incident.longitud}}</td>
+          <td>{{incident.usuario.nombre}} {{incident.usuario.apellido}}</td>
+          <td><button class="btn btn-light button-small" (click)="disableIncident(i)">{{incident.habilitado}}</button></td>
         </tr>
       </tbody>
     </table>
