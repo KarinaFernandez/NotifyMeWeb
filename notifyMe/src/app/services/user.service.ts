@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 
   user;
+  users;
 
   constructor(
     private http: HttpClient
@@ -24,6 +25,10 @@ export class UserService {
     this.user = user;
   }
 
+  setUsers(users) {
+    this.users = users;
+  }
+
   register(nombre, apellido, email, contraseña, admin ){
     const headers = { 'Content-Type': 'application/json' };
     const body = JSON.stringify({ nombre, apellido, email, contraseña, admin });
@@ -34,6 +39,21 @@ export class UserService {
     const headers = { 'Content-Type': 'application/json' };
     const body = JSON.stringify({ email, contraseña});
     return this.http.post("https://notify-me-server.herokuapp.com/login", body,{ headers });
+  }
+
+  getUsers() {
+    const headers = { 'Content-Type': 'application/json' };
+    console.log(headers);
+    // const params = new HttpParams().append('id', this.userService.getUser().id);
+    // console.log(params);
+    return this.http.get("https://notify-me-server.herokuapp.com/usuarios", { headers });
+  }
+
+  disableUser(idUsuario, activo) {
+    const headers = { 'Content-Type': 'application/json' }; //, 'apiKey': this.userService.getUser().apiKey  };
+    const body = JSON.stringify({ activo });
+    const route = "https://notify-me-server.herokuapp.com/usuarios/" + idUsuario;
+    return this.http.put(route, body, { headers });
   }
 
 }

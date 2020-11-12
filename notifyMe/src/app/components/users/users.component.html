@@ -1,0 +1,28 @@
+<body>
+  <div class="text-center">
+    <h5>Usuarios registrados</h5>
+    <p *ngIf="users?.length <= 0">No se encuentran usuarios registrados aún</p>
+    <p *ngIf="errMsg">{{errMsg}}</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th *ngFor="let titulo of titulos" scope="col">{{ titulo }} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let user of users; let i = index">
+          <td>{{user.nombre}} {{user.apellido}}</td>
+          <td>{{user.email}}</td>
+          <td>${{user.incidentes.length}}</td>
+          <td>
+            <div *ngIf="user.activo">Activo</div>
+            <div *ngIf="!user.activo">Desactivado</div>
+          </td>
+          <td><button class="btn btn-light button-small" (click)="disableUser(i)"><div *ngIf="user.activo">Desactivar</div>
+            <div *ngIf="!user.activo">Activar</div></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
