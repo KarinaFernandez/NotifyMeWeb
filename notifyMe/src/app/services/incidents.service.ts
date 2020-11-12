@@ -20,7 +20,6 @@ export class IncidentService {
 
   getIncidents() {
     const headers = { 'Content-Type': 'application/json' };
-    console.log(headers);
     // const params = new HttpParams().append('id', this.userService.getUser().id);
     // console.log(params);
     return this.http.get("https://notify-me-server.herokuapp.com/incidentes", { headers });
