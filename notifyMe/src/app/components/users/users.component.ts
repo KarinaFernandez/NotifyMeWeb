@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  filteredUsers = [];
   users = [];
   titulos = [];
   errMsg;
@@ -25,13 +26,24 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers().subscribe((a: any) => {
       console.log(a);
       this.userService.setUsers(a);
+      
       this.users = a;
-
+      this.filteredUsers = a;
+      
       if (this.users.length > 0) {
         this.titulos = ["Nombre", "Email", "Cant incidentes reportados", "Activo"];
       }
     })
   }
+
+  applyFilter(filterValue: String) {
+    let filterValueLower = filterValue.toLowerCase();
+    if(filterValue === '') {
+        this.filteredUsers = this.users;
+    } else {
+      this.filteredUsers = this.users.filter((user) => user.nombre.toLowerCase().includes(filterValueLower));
+    }
+ }
 
   disableUser(index) {
     console.log(index);

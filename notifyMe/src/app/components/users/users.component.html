@@ -4,6 +4,8 @@
     <p *ngIf="users?.length <= 0">No se encuentran usuarios registrados aún</p>
     <p *ngIf="errMsg">{{errMsg}}</p>
 
+    <p>Nombre a filtrar: <input type="text" (keyup)="applyFilter($event.target.value)"></p>
+
     <table class="table">
       <thead>
         <tr>
@@ -11,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr mdbTableCol *ngFor="let user of users; let i = index">
+        <tr mdbTableCol *ngFor="let user of filteredUsers; let i = index" >
           <td>{{user.nombre}} {{user.apellido}}</td>
           <td>{{user.email}}</td>
           <td>${{user.incidentes.length}}</td>
