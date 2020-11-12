@@ -18,7 +18,12 @@
           <td>{{incident.imagen}}</td>
           <td>{{incident.latitud}} {{incident.longitud}}</td>
           <td>{{incident.usuario.nombre}} {{incident.usuario.apellido}}</td>
-          <td><button class="btn btn-light button-small" (click)="disableIncident(i)">{{incident.habilitado}}</button></td>
+          <td>
+            <div *ngIf="incident.habilitado">Habilitado</div>
+            <div *ngIf="!incident.habilitado">Deshabilitado</div>
+          </td>
+          <td><button class="btn btn-light button-small" (click)="disableIncident(i)"><div *ngIf="incident.habilitado">Deshabilitar</div>
+            <div *ngIf="!incident.habilitado">Habilitar</div></button></td>
         </tr>
       </tbody>
     </table>
