@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UsersComponent implements OnInit {
   filteredUsers = [];
   users = [];
-  titulos = [];
+  titles = [];
 
   // Filters
   activo: String;
@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
       this.filteredUsers = a;
 
       if (this.users.length > 0) {
-        this.titulos = ["Nombre", "Email", "Cant incidentes reportados", "Activo"];
+        this.titles = ["Nombre", "Email", "Cant incidentes reportados", "Activo"];
       }
     })
   }

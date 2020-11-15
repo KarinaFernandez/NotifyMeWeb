@@ -9,8 +9,21 @@ import { IncidentService } from 'src/app/services/incidents.service';
 })
 export class IncidentsComponent implements OnInit {
   incidents = [];
-  titulos = [];
+  filteredIncidents = [];
+  titles = [];
   errMsg;
+
+  // Dates
+  // now = new Date();
+  // date = this.now;
+  // min = this.createDate(this.now, -5);
+  // max = this.createDate(this.now, +5);
+
+  // createDate(date, days) {
+  //   var d = new Date(date);
+  //   d.setDate(date.getDate() + days);
+  //   return d;
+  // }
 
   constructor(
     private incidentService: IncidentService,
@@ -27,8 +40,10 @@ export class IncidentsComponent implements OnInit {
       this.incidentService.setIncidents(a);
       this.incidents = a;
 
+      this.filteredIncidents = a;
+
       if (this.incidents.length > 0) {
-        this.titulos = ["Fecha", "Titulo", "Tipo", "Imagen", "Coordenadas", "Usuario", "Habilitado"];
+        this.titles = ["Fecha", "Titulo", "Tipo", "Imagen", "Coordenadas", "Usuario", "Habilitado"];
       }
     })
   }
@@ -39,11 +54,25 @@ export class IncidentsComponent implements OnInit {
     console.log(incident);
 
     this.incidentService.disableIncident(incident._id, !incident.habilitado).subscribe((a: any) => {
-      if (a.codigo == 409 || a.codigo == 404 || a.codigo == 400 ) {
+      if (a.codigo == 409 || a.codigo == 404 || a.codigo == 400) {
         this.errMsg = a.mensaje;
       } else {
         this.getIncidents();
       }
     })
+  }
+
+  applyFilter(titulo: String) {
+    let filterValueLower = titulo.toLowerCase();
+    if (titulo === '') {
+      this.filteredIncidents = this.incidents;
+    } else {
+      this.filteredIncidents = this.incidents.filter((incident) => incident.titulo.toLowerCase().includes(filterValueLower));
+    }
+  }
+
+  applyFilterByDay(day: String) {
+    console.log(day);
+    this.filteredIncidents = this.incidents.filter((incident) => incident.fecha.equals(day));
   }
 }

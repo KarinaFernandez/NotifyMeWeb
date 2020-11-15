@@ -4,14 +4,33 @@
     <p *ngIf="incidents?.length <= 0">No se registraron incidentes aún</p>
     <p *ngIf="errMsg">{{errMsg}}</p>
 
+    <p>Titulo a filtrar <input type="text" (keyup)="applyFilter($event.target.value)"></p>
+
+    <!-- <p>Fecha incidente</p>
+    <form name="form">
+      <input type="date" 
+      name="date" 
+      min="{{min | date: 'yyyy-MM-dd'}}" 
+      ng-min="min" 
+      max="{{max | date: 'yyyy-MM-dd'}}"
+        ng-max="max"
+        ng-model="date" 
+        ng-change="applyFilterByDay(form.date)"]>
+      <div ng-messages="form.date.$error" ng-show="form.date.$invalid" style="color: red">
+        <div ng-message="date">Fecha invalida</div>
+        <div ng-message="min">La fecha debe ser mayor a min</div>
+        <div ng-message="max">La fecha debe ser menor a max</div>
+      </div>
+    </form> -->
+
     <table class="table">
       <thead>
         <tr>
-          <th *ngFor="let titulo of titulos" scope="col">{{ titulo }} </th>
+          <th *ngFor="let title of titles" scope="col">{{ title }} </th>
         </tr>
       </thead>
       <tbody>
-        <tr mdbTableCol *ngFor="let incident of incidents; let i = index">
+        <tr mdbTableCol *ngFor="let incident of filteredIncidents; let i = index">
           <td>{{incident.fecha}}</td>
           <td>{{incident.titulo}}</td>
           <td>${{incident.tipo}}</td>
@@ -22,19 +41,12 @@
             <div *ngIf="incident.habilitado">Habilitado</div>
             <div *ngIf="!incident.habilitado">Deshabilitado</div>
           </td>
-          <td><button class="btn btn-light button-small" (click)="disableIncident(i)"><div *ngIf="incident.habilitado">Deshabilitar</div>
-            <div *ngIf="!incident.habilitado">Habilitar</div></button></td>
+          <td><button class="btn btn-light button-small" (click)="disableIncident(i)">
+              <div *ngIf="incident.habilitado">Deshabilitar</div>
+              <div *ngIf="!incident.habilitado">Habilitar</div>
+            </button></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <!-- <body class="container m-t-1">
-    <app-expenses-per-type></app-expenses-per-type>
-  </body>
-  <body class="container m-t-1">
-    <app-purchase-by-type></app-purchase-by-type>
-  </body>
-  <body class="container m-t-1">
-    <app-total-amount-wasted></app-total-amount-wasted>
-  </body> -->
 </body>
