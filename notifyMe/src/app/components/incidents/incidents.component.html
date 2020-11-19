@@ -1,28 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+
 <body>
-  <div class="text-center">
-    <h5>Incidentes reportados</h5>
+    <h1>Incidentes reportados</h1>
     <p *ngIf="incidents?.length <= 0">No se registraron incidentes aún</p>
     <p *ngIf="errMsg">{{errMsg}}</p>
 
     <p>Titulo a filtrar <input type="text" (keyup)="applyFilter($event.target.value)"></p>
 
-    <!-- <p>Fecha incidente</p>
-    <form name="form">
-      <input type="date" 
-      name="date" 
-      min="{{min | date: 'yyyy-MM-dd'}}" 
-      ng-min="min" 
-      max="{{max | date: 'yyyy-MM-dd'}}"
-        ng-max="max"
-        ng-model="date" 
-        ng-change="applyFilterByDay(form.date)"]>
-      <div ng-messages="form.date.$error" ng-show="form.date.$invalid" style="color: red">
-        <div ng-message="date">Fecha invalida</div>
-        <div ng-message="min">La fecha debe ser mayor a min</div>
-        <div ng-message="max">La fecha debe ser menor a max</div>
-      </div>
-    </form> -->
-
+    <div class="text-center">
     <table class="table">
       <thead>
         <tr>
@@ -33,8 +26,7 @@
         <tr mdbTableCol *ngFor="let incident of filteredIncidents; let i = index">
           <td>{{incident.fecha}}</td>
           <td>{{incident.titulo}}</td>
-          <td>${{incident.tipo}}</td>
-          <td>{{incident.imagen}}</td>
+          <td>{{incident.tipo}}</td>
           <td>{{incident.latitud}} {{incident.longitud}}</td>
           <td>{{incident.usuario.nombre}} {{incident.usuario.apellido}}</td>
           <td>
@@ -49,4 +41,8 @@
       </tbody>
     </table>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+</html>

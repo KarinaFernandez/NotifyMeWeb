@@ -12,6 +12,7 @@ import { UserService } from '../../services/user.service';
 export class LoginComponent implements OnInit {
   loginForm;
   errMsg;
+  loading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,9 +38,11 @@ export class LoginComponent implements OnInit {
       this.errMsg = "Por favor valide los datos ingresados"
 
     } else {
+      this.loading = true;
 
       // Call to service and if is okey redirect
       this.userService.login(email, password).subscribe(user => {
+        this.loading = false;
         this.userService.setUser(user);
         console.log(user);
         this.router.navigate(['/home']);

@@ -13,18 +13,6 @@ export class IncidentsComponent implements OnInit {
   titles = [];
   errMsg;
 
-  // Dates
-  // now = new Date();
-  // date = this.now;
-  // min = this.createDate(this.now, -5);
-  // max = this.createDate(this.now, +5);
-
-  // createDate(date, days) {
-  //   var d = new Date(date);
-  //   d.setDate(date.getDate() + days);
-  //   return d;
-  // }
-
   constructor(
     private incidentService: IncidentService,
     private router: Router
@@ -43,7 +31,7 @@ export class IncidentsComponent implements OnInit {
       this.filteredIncidents = a;
 
       if (this.incidents.length > 0) {
-        this.titles = ["Fecha", "Titulo", "Tipo", "Imagen", "Coordenadas", "Usuario", "Habilitado"];
+        this.titles = ["Fecha", "Titulo", "Tipo", "Coordenadas", "Usuario", "Habilitado"];
       }
     })
   }

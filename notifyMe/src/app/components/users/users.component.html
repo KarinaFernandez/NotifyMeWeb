@@ -1,12 +1,19 @@
-<body>
-  <div class="text-center">
-    <h5>Usuarios registrados</h5>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+</head>
+<body>  
+    <h1>Usuarios registrados</h1>
     <p *ngIf="users?.length <= 0">No se encuentran usuarios registrados aún</p>
     <p *ngIf="errMsg">{{errMsg}}</p>
 
-    <p>Nombre a filtrar <input type="text" (keyup)="applyFilter($event.target.value)"></p>
     <div class="form-group">
-      <a>Estado </a>
+      <p>Filtrar usuarios por estado</p>
       <select class="form-control"
               name="activo"
               (change)="selectChangeHandler($event)">
@@ -16,6 +23,7 @@
       </select>
     </div>  
 
+    <div class="text-center">
     <table class="table">
       <thead>
         <tr>
@@ -37,4 +45,8 @@
       </tbody>
     </table>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+</html>
