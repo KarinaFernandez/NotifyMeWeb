@@ -24,7 +24,7 @@
       </thead>
       <tbody>
         <tr mdbTableCol *ngFor="let incident of filteredIncidents; let i = index">
-          <td>{{incident.fecha}}</td>
+          <td>{{formattedDate(incident.fecha)}}</td>
           <td>{{incident.titulo}}</td>
           <td>{{incident.tipo}}</td>
           <td>{{incident.latitud}} {{incident.longitud}}</td>

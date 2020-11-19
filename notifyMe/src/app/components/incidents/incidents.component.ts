@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { IncidentService } from 'src/app/services/incidents.service';
 
 @Component({
@@ -63,4 +64,8 @@ export class IncidentsComponent implements OnInit {
     console.log(day);
     this.filteredIncidents = this.incidents.filter((incident) => incident.fecha.equals(day));
   }
+
+  formattedDate(date) {
+    return moment(date).format("DD/MM/YYYY HH:mm:ss")
+}
 }
